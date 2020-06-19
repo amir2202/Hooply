@@ -1,7 +1,7 @@
 package com.hooply;
 
 import android.os.Bundle;
-
+import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+    }
+
+    public void login(View view) {
+        // Do something in response to button click
+    }
+
+    public void register(View view) {
+        // Do something in response to button click
     }
 
 }
