@@ -1,7 +1,14 @@
 package com.hooply;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.inputmethod.InputMethodManager;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,14 +33,54 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        Button registerButton = (Button) findViewById(R.id.registerButton);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText emailText = (EditText) findViewById(R.id.User);
+                EditText passwordText = (EditText) findViewById(R.id.Password);
+
+                String email = emailText.getText().toString();
+                String password = passwordText.getText().toString();
+                register(email, password);
+
+                TextView debug = (TextView) findViewById(R.id.debug);
+                debug.setText(password + " " + email);
+            }
+        });
+
+        Button loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText emailText = (EditText) findViewById(R.id.User);
+                EditText passwordText = (EditText) findViewById(R.id.Password);
+
+                String email = emailText.getText().toString();
+                String password = passwordText.getText().toString();
+                login(email, password);
+
+                TextView debug = (TextView) findViewById(R.id.debug);
+                debug.setText(password + " " + email);
+            }
+        });
+
     }
 
-    public void login(View view) {
-        // Do something in response to button click
+    public void login(String email, String password) {
+        Log.d("login", "meeeeen: "+email + password);
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    public void register(View view) {
-        // Do something in response to button click
+    public void register(String email, String password) {
+        Log.d("register", email + password);
+        InputMethodManager inputManager = (InputMethodManager)
+                getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
 }
